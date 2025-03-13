@@ -1,0 +1,53 @@
+---
+title: "In_person Assignment"
+format: html
+editor: visual
+---
+
+## In Person Assignment:
+
+```{python}
+# Please write a Python program to count the frequency of each word in a file, document.txt
+
+# Download document.txt. This contains the text of the Declaration of Independence. 
+
+# Print the top 20 words that have the highest frequencies in decreasing order on the screen. Please print both words and their corresponding frequencies.
+# Print the frequency for the word "people" on the screen. Note that "People" is considered a different word from "people".
+# Print the frequency for the word "right" on the screen. Note that "rights" or "Right" is considered a different word from "right".
+# Punctuation marks are not considered part of a word.
+
+
+# Open and read the file
+file = open("C:\\Users\\domin\\Downloads\\document.txt", "r")
+text = file.read()  # Then I want to store the read information into variable 'text'
+
+# Remove punctuation manually (keeping only alphanumeric characters and spaces)
+punctuation = '-.!?-;:' 
+for char in punctuation: # iterate through each given punctuation mark
+    text = text.replace(char, " ") # if it's found in the text, replace it with a space.
+
+# Convert text into a list of words. The .split function makes words individual values based on when a space occurs.
+words = text.split()
+words
+
+# Now I want to use a dictionary to store the words, because it will hold the word as the index and the count as the value.
+word_counts = {}
+for i in words:             # For every iterated value in the words variable
+    if i in word_counts:    # And if the iterated variable is already found in the dictionary
+        word_counts[i] += 1 # Increase the value by 1
+    else:                   # Otherwise
+        word_counts[i] = 1  # Make it 1, as it is the first time it has been spotted.
+
+# Let's define a function to get the frequency count.
+def get_count(item):
+    return item[1]
+# Then sort the values in word_counts by using the get_count function. Then reversing it at the end to get a descenign order.
+sort_counts = sorted(word_counts.items(), key=get_count, reverse=True)
+
+# Print the top 20 words
+print("Most frequent words used: ")
+for word, count in sort_counts[:20]:
+    print(f"{word}: {count}")
+
+
+```
